@@ -35,6 +35,6 @@ English version will be uploaded soon.
 Enjoy! :)
 
 
-                                                                                                         yihaosun94@gmail.com
-                                                                                                                    Yihao Sun
-                                                                                                                   07.03.2020
+                                                                                                    yihaosun94@gmail.com
+                                                                                                               Yihao Sun
+                                                                                                              07.03.2020
