@@ -3,10 +3,10 @@
 
 # The prediction is achieved by applying the Geometric series, along with a 
 # recrusive algorithm. In this case, each person who get infected by this virus,
-# will go through a 10 days period (T_period):(referred by thesis in 'Lancet')
+# will go through a 8 days period (T_period):(referred by thesis in 'Lancet')
 #                                 3 days generate virus inside their body (T_delay)
-#                                 7 days spread to other people (T_infect)
-# Then after this 10-days period, this patient will go to hospital and no longer
+#                                 5 days spread to other people (T_infect)
+# Then after this 8-days period, this patient will go to hospital and no longer
 # be a infection source.
 
 ###############################################################################
@@ -14,7 +14,7 @@
 # Assumption: [1]. You might meet ['nr_people_meet_a_day'] diffreent people in a day.
 #             [2]. You have ['percent_close_talking'*100%] talk to them closely.
 #             [3]. During those closely talk, you have ['percent_infect'*100%] infect them.
-#             [4]. Values assumed above is in line 44-46, and of course you can 
+#             [4]. Values assumed above is in line 40-43, and of course you can 
 #                  tune them to see how these values influence the final prediction.
 # Anyway, you will see how sensitive this final prediction when you tune these hyparameters
 
@@ -146,17 +146,18 @@ print('Since the danish patient_zero came back from Italy in %s.' % Base)
 print('So the infection prediction is made from %s, to %s(right now).' % (Base, NOW))
 print('')
 print('PREDICTION:')
-print('R0 value: %3f' % R0, str('per person'))
+print('R0 value: %.3f' % R0, str('per person'))
 print('There might be #%d# people got infected until %s' % (int(infection[-1]), NOW))
 
 
 # In[2].Infection dynamic plot
-# PLot as a gif 
+# PLot as a gif
+location = 'Denmark'
 plt.ion()
 plt.figure(figsize=(12,8))
-plt.title('Infection through time, when R0 = %3f, and %d patient_zero' % (R0, nr_patient_zero), fontsize = 20)
-plt.xlabel('Days away from 2019-12-01', fontsize = 23)
-plt.ylabel('Infection population', fontsize = 23)
+plt.title('Infection through time, when R0 = %.3f, and %d patient_zero' % (R0, nr_patient_zero), fontsize = 20)
+plt.xlabel('Days away from %s' % Base, fontsize = 23)
+plt.ylabel('Infection population in %s' % location, fontsize = 23)
 t_list = []
 result_list = []
 t = 0
