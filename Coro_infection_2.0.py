@@ -26,7 +26,7 @@ from matplotlib.animation import FuncAnimation
 
 # Data preparation
 Base = '2020-02-24'
-NOW =  '2020-03-10'
+NOW =  '2020-03-22'
 
 # Get information from the thesis in 'Lancet'
 T_incu = 8                     # Incubation period, [Day]
@@ -39,7 +39,7 @@ T_infect = T_period - T_delay   # How many days that one patient can be infectio
 # The hyperparameters below are very sensitive in the final prediction.
 nr_patient_zero = 1             # Patient zero
 nr_people_meet_a_day = 50       # How many people you meet roughly in a day
-percent_close_talking = 0.2     # The probability of talking closely
+percent_close_talking = 0.15    # The probability of talking closely
 percent_infect = 0.15           # The probability of infection in this close-talk.
 
 # infection coe [q]
