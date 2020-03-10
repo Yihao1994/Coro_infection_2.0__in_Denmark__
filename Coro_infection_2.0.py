@@ -40,7 +40,7 @@ T_infect = T_period - T_delay   # How many days that one patient can be infectio
 nr_patient_zero = 2             # Patient zero
 nr_people_meet_a_day = 50       # How many people you meet roughly in a day
 percent_close_talking = 0.15    # The probability of talking closely
-percent_infect = 0.13           # The probability of infection in this close-talk.
+percent_infect = 0.15           # The probability of infection in this close-talk.
 
 # infection coe [q]
 # This ratio is only valid until the city get blocked.
