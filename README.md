@@ -7,7 +7,7 @@ Orientation in English:
 Model Assumption:  
 [1].Basing on the Lancet dissertation, assuming that the infection period for each person as 8 days, from which, 3 days (T_delay) for generating the virus inside their body without infecting the others + 5 days (T_infect) infecting the others. After 8 days, the infected person was isolated into the hospital and lose the contagious.  
   
-[2].The number of patient_zero is assumed as 2. Assuming that, each people in Denmark can meet up 50 persons a day, and 15% probability to have a close talk with these 50 persons, and 13% probability to infect or get infected in these close talk.Basing on all these, can calculate the infection corfficient q.  
+[2].The number of patient_zero is assumed as 2. Assuming that, each people in Denmark can meet up 50 persons a day, and 15% probability to have a close talk with these 50 persons, and 15% probability to infect or get infected in these close talk.Basing on all these, can calculate the infection corfficient q.  
   
 Model Theory:  
 From the perspective of mathematics, this model is made to predict the real & potential amount of people that has been infected by this Coro_2019 virus. The model carrier is the __Geometric series__, and by applying the higher algebra and recrusive algorithm, the most critical term in this entire algorithm, the __'weight_calculated'vector__ can be derived and utilized further.  
@@ -43,7 +43,7 @@ Enjoy! :)
 Orientation in Chinese:  
 模型假设：  
 [1].根据‘柳叶刀’论文，假设平均每个感染者周期为8天,其中3天(T_delay)产病毒不传染 + 5天(T_infect)传染。感染者感染后8天住院丧失感染性。  
-[2].零号感染者假定为2人。传播按每人每天接触50人，15% 近距离说话，13%传染给近距离讲话的人。通过以上数据，可以计算感染因子q。
+[2].零号感染者假定为2人。传播按每人每天接触50人，15% 近距离说话，15%传染给近距离讲话的人。通过以上数据，可以计算感染因子q。
   
 模型原理：  
 该模型意在实现传染病模型的纯数学模型。模型载体为几何级数, 通过使用高等代数和递归算法推导出本算法最关键的'weight_calculated'vector. 由于缺少准确数据，所以该模型预测无法使用ML/DL。
