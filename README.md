@@ -1,7 +1,8 @@
 # Coro_infection_2.0__in_Denmark  
   
-This model is updated from my Coro_infection_1.0__Wuhan_Infection. Part of the data has been coor
-
+This model is updated from my Coro_infection_1.0__Wuhan_Infection. Part of the data has been coordinated with the situation in Denmark.
+  
+#########################################  
 Orientation in English:  
 Model Assumption:  
 [1].Basing on the Lancet dissertation, assuming that the infection period for each person as 8 days, from which, 3 days (T_delay) for generating the virus inside their body without infecting the others + 5 days (T_infect) infecting the others. After 8 days, the infected person was isolated into the hospital and lose the contagious.  
@@ -31,11 +32,9 @@ The line_64-85 is the core of this model. This complicated strcuture is to reali
 
 零号病人出现在第0天，按照上述模型假设，前3天病毒在其体内繁殖，不具有传染性。但是到了第4天，病毒开始传播直到其第8天住院。零号感染者所传播的时间为第4天到第8天结束.我称此轮为第一轮，因为零号感染者感染的人数就是 零号病人的数量*感染因子q。特别是，此时q的指数为1。  
 但这时重点来了，细心的朋友可能注意到了，在第7天时，传播的除了零号病人自己本身，第一轮的被感染者也开始传播病毒感染别人了。这种复杂的情况在后期随着天数增加愈演愈烈！如果你观察图片，看到我画紫色线的地方，你会发现，在第15天时，第二轮感染刚刚结束，第三轮感染在进行中，而第四轮感染已经开始了。图中写的q的系数，是当时推导递推规律时留下的。可以看出，想要准确计算括号中的参数，并不是这么简单。所以我先找到了这些系数的组成规律，然后用递推算法搞定了这些系数，并存在了 'weight_calculated' vector. 代码 line_64-85 的复杂结构就是为了实现这个功能所做。关于递推算法, 请参考我留下的'important_image_2.jpg',通过推倒前几轮感染出现时，不同的q^1 or q^2 or q^3 所乘的指数，就可以轻松的找出递推的规律，在这里我就不赘述了。非常有兴趣但推不出来的朋友可以联系我，有空可以当面推，比较好懂。
-
-
-
-
-
+#########################################  
+  
+#########################################  
 Orientation in Chinese:  
 模型假设：  
 [1].根据‘柳叶刀’论文，假设平均每个感染者周期为8天,其中3天(T_delay)产病毒不传染 + 5天(T_infect)传染。感染者感染后8天住院丧失感染性。  
@@ -65,8 +64,9 @@ Orientation in Chinese:
 零号病人出现在第0天，按照上述模型假设，前3天病毒在其体内繁殖，不具有传染性。但是到了第4天，病毒开始传播直到其第8天住院。零号感染者所传播的时间为第4天到第8天结束.我称此轮为第一轮，因为零号感染者感染的人数就是 零号病人的数量*感染因子q。特别是，此时q的指数为1。  
 但这时重点来了，细心的朋友可能注意到了，在第7天时，传播的除了零号病人自己本身，第一轮的被感染者也开始传播病毒感染别人了。这种复杂的情况在后期随着天数增加愈演愈烈！如果你观察图片，看到我画紫色线的地方，你会发现，在第15天时，第二轮感染刚刚结束，第三轮感染在进行中，而第四轮感染已经开始了。图中写的q的系数，是当时推导递推规律时留下的。可以看出，想要准确计算括号中的参数，并不是这么简单。所以我先找到了这些系数的组成规律，然后用递推算法搞定了这些系数，并存在了 'weight_calculated' vector. 代码 line_64-85 的复杂结构就是为了实现这个功能所做。关于递推算法, 请参考我留下的'important_image_2.jpg',通过推倒前几轮感染出现时，不同的q^1 or q^2 or q^3 所乘的指数，就可以轻松的找出递推的规律，在这里我就不赘述了。非常有兴趣但推不出来的朋友可以联系我，有空可以当面推，比较好懂。
 
-在代码运行之后，可以观测到人数变化的动态曲线，以及在 console window 输出的最终预测值。
-
+在代码运行之后，可以观测到人数变化的动态曲线，以及在 console window 输出的最终预测值。  
+#########################################  
+  
 Enjoy! :)
 
 
