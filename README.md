@@ -28,11 +28,13 @@ Before we get started, I need to answer a most generalized question that I was a
 As we know, the population density in Russia is quite low (9 person/km^2), compared with Denmark (138 person/Km^2), which means, their __variable_1__ can be quite different. On the other hand, the citizens' enthusiasm are quite different in these two countries, which makes a difference in if people usuallly wanna a close talk or not. This can somehow effect the __variable_2__. At last, since the citizen's fitness in Denmark is quite high compared with Russia, so the probability of getting infected can be dramatically different, which makes __variable_3__ different. In summary, the difference in countries, can show up in all those hyperparameters.  
   
 The line_64-85 is the core of this model. This complicated strcuture is to realize, a periodic appearing & disappearing Geometric series tracking problem. What used here is also where the recrusive algorithm applied. I will help you realize where need to be tracking, and why it is complicated in doing this prediction. Please open the '__important_image_1.jpg__' I left, read my __Model Assumption__ twice, and let me take an example to explain:  
-As what you can see from the '__important_image_1.jpg__', the patient_zero shows up in day_0, basing on my assumption, the first three days the virus is generating inside his body, no contagious. While, when in day_4, the patient_zero start to spread out the virus to the others, and this first round infection is from day_4 to day_8, which I call: 1st layer. 
-
-
-零号病人出现在第0天，按照上述模型假设，前3天病毒在其体内繁殖，不具有传染性。但是到了第4天，病毒开始传播直到其第8天住院。零号感染者所传播的时间为第4天到第8天结束.我称此轮为第一轮，因为零号感染者感染的人数就是 零号病人的数量*感染因子q。特别是，此时q的指数为1。  
-但这时重点来了，细心的朋友可能注意到了，在第7天时，传播的除了零号病人自己本身，第一轮的被感染者也开始传播病毒感染别人了。这种复杂的情况在后期随着天数增加愈演愈烈！如果你观察图片，看到我画紫色线的地方，你会发现，在第15天时，第二轮感染刚刚结束，第三轮感染在进行中，而第四轮感染已经开始了。图中写的q的系数，是当时推导递推规律时留下的。可以看出，想要准确计算括号中的参数，并不是这么简单。所以我先找到了这些系数的组成规律，然后用递推算法搞定了这些系数，并存在了 'weight_calculated' vector. 代码 line_64-85 的复杂结构就是为了实现这个功能所做。关于递推算法, 请参考我留下的'important_image_2.jpg',通过推倒前几轮感染出现时，不同的q^1 or q^2 or q^3 所乘的指数，就可以轻松的找出递推的规律，在这里我就不赘述了。非常有兴趣但推不出来的朋友可以联系我，有空可以当面推，比较好懂。
+As what you can see from the '__important_image_1.jpg__', the patient_zero shows up in day_0, basing on my assumption, the first three days the virus is generating inside his body, no contagious. While, when in day_4, the patient_zero start to spread out the virus to the others, and this first round infection is from day_4 to day_8, which I call it: __1st layer__. And as you can see from the second column, the people who are actually infected by the __1st layer__, I call them the __2nd layer__. The third layer is in the third column, where the people in the __3rd layer__ are infected by the __2nd layer__. So the first thing I wanna mention here, is that, the term "__layer__", is not just a name, __but also a very convenient way to do the statistics for the different infection generations.__  
+  
+The second thing I would like to mention, is the core issue of this model. As what you can observe from day_7, except the initial source of infection (the patient_zero), the infected people in __1st layer__ start to spread out the virus! This kind of situation happens  much more frequently with the growth of days. Like where I drew the purpose line, in day_15, the __2nd layer__ infection is just over, and the __3rd layer__ infection is ongoing, while the __4th layer__ infection has already started for 3 days. The coefficients of the q, are what I derived in previous. As you can see the numbers inside the brackets, which are the coefficients of the q, cannot be directly achieved. But after I tried to find the potential rules of them, I realized it can be described by a recrusive algorithm. The results of these coefficients have bben stored in the __'weight_calculated' vector__. And the complicated structure in code line_64-85 is to realize this functionality. About the recrusive algorithm, please refer to the '__important_image_2.jpg__' I left, by deriving the first several layers of the infection by yourself, you can calculate the coefficeint of q^1 or q^2 or q^3, then you can easily find out the potential, recrusive rules behind them.  
+  
+The code can be directly executed in Spyder deirectly, and after running it, you can observe the infected amount varying curve, and the final prediction inn the console window.  
+  
+Enjoy! :)  
 #######################     
   
 #######################     
@@ -66,9 +68,11 @@ Orientation in Chinese:
 但这时重点来了，细心的朋友可能注意到了，在第7天时，传播的除了零号病人自己本身，第一轮的被感染者也开始传播病毒感染别人了。这种复杂的情况在后期随着天数增加愈演愈烈！如果你观察图片，看到我画紫色线的地方，你会发现，在第15天时，第二轮感染刚刚结束，第三轮感染在进行中，而第四轮感染已经开始了。图中写的q的系数，是当时推导递推规律时留下的。可以看出，想要准确计算括号中的参数，并不是这么简单。所以我先找到了这些系数的组成规律，然后用递推算法搞定了这些系数，并存在了 'weight_calculated' vector. 代码 line_64-85 的复杂结构就是为了实现这个功能所做。关于递推算法, 请参考我留下的'important_image_2.jpg',通过推倒前几轮感染出现时，不同的q^1 or q^2 or q^3 所乘的指数，就可以轻松的找出递推的规律，在这里我就不赘述了。非常有兴趣但推不出来的朋友可以联系我，有空可以当面推，比较好懂。
 
 在代码运行之后，可以观测到人数变化的动态曲线，以及在 console window 输出的最终预测值。  
+  
+Enjoy! :)  
 #######################    
   
-Enjoy! :)
+
 
 
                                                                                                yihaosun94@gmail.com
