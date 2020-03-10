@@ -1,7 +1,42 @@
-# Coro_infection_2.0__in_Denmark
-English version will be uploaded soon.
+# Coro_infection_2.0__in_Denmark  
+  
+This model is updated from my Coro_infection_1.0__Wuhan_Infection. Part of the data has been coor
+
+Orientation in English:  
+Model Assumption:  
+[1].Basing on the Lancet dissertation, assuming that the infection period for each person as 8 days, from which, 3 days (T_delay) for generating the virus inside their body without infecting the others + 5 days (T_infect) infecting the others. After 8 days, the infected person was isolated into the hospital and lose the contagious.  
+  
+[2].The number of patient_zero is assumed as 1. Assuming that, each people in Denmark can meet up 50 persons a day, and 20% probability to have a close talk with these 50 persons, and 15% probability to infect and get infected in these close talk.Basing on all these, can calculate the infection corfficient q.  
+  
+Model Theory:  
+From the perspective of mathematics, this model is made to predict the real & potential amount of people that has been infected by this Coro_2019 virus. The model carrier is the __Geometric series__, and by applying the higher algebra and recrusive algorithm, the most critical term in this entire algorithm, the __'weight_calculated'vector__ can be derived and utilized further.  
+  
+Model Functionality:  
+Can be used to predict that, without any serious precautions from the government, how many people can be infected by this Coro_2019, from the first danish patient_zero shows up in 2020-02-24, to __NOW (In line_29, you can just change the time to say how this infection will go in the future).__ Since I believe in western world, there may not be any __serious__ precautiions always, so in principle, you can always use this model for prediction.  
+  
+Model Orientation:  
+In line_38-43, are the hyperparameters that you can tuned in this model.    
+[1].__nr_patient_zero__       : How many patient_zero there are.（__variable_0__）  
+[2].__nr_people_meet_a_day__  : How many different people you can meet up in a day.（__variable_1__）    
+[3].__percent_close_talking__ : The probability of having a close talk with them.（__variable_2__）  
+[4].__percent_infect__        : The probability of getting infected by these close talks.（__variable_3__）    
+  
+Before we get started, I need to answer a most generalized question that I was asked when I uploaded my model_1.0. The question is: 'Your model, seems does not have a differnece when dealing with differernt countries, which is not scientific'. So let me put this into clear from two perspectives:  
+(1). First of all, since the __nr_patient_zero__ for a certain country is always a small number (such as 1-10), which is truly a extrmnely small number compard with the while population. So in the beginning of this virus transmission, the initial condition can be always treated as similar.  
+(2). Secondly, during the virus transmission, according to the difference in country population, or population density, there should be a difference in the virus transmission situation. I would like to take a little 'extreme' example to explain, like the difference between Denmark and Russia:  
+As we know, the population density in Russia is quite low (9 person/km^2), compared with Denmark (138 person/Km^2), which means, their __variable_1__ can be quite different. On the other hand, the citizens' enthusiasm are quite different in these two countries, which makes a difference in if people usuallly wanna a close talk or not. This can somehow effect the __variable_2__. At last, since the citizen's fitness in Denmark is quite high compared with Russia, so the probability of getting infected can be dramatically different, which makes __variable_3__ different. In summary, the difference in countries, can show up in all those hyperparameters.  
+  
+The line_64-85 is the core of this model. This complicated strcuture is to realize, a periodic appearing & disappearing Geometric series tracking problem. What used here is also where the recrusive algorithm applied. I will help you realize where need to be tracking, and why it is complicated in doing this prediction. Please open the 'important_image_1.jpg' I left, read my __Model Assumption__ twice, and let me take an example to explain:  
 
 
+零号病人出现在第0天，按照上述模型假设，前3天病毒在其体内繁殖，不具有传染性。但是到了第4天，病毒开始传播直到其第8天住院。零号感染者所传播的时间为第4天到第8天结束.我称此轮为第一轮，因为零号感染者感染的人数就是 零号病人的数量*感染因子q。特别是，此时q的指数为1。  
+但这时重点来了，细心的朋友可能注意到了，在第7天时，传播的除了零号病人自己本身，第一轮的被感染者也开始传播病毒感染别人了。这种复杂的情况在后期随着天数增加愈演愈烈！如果你观察图片，看到我画紫色线的地方，你会发现，在第15天时，第二轮感染刚刚结束，第三轮感染在进行中，而第四轮感染已经开始了。图中写的q的系数，是当时推导递推规律时留下的。可以看出，想要准确计算括号中的参数，并不是这么简单。所以我先找到了这些系数的组成规律，然后用递推算法搞定了这些系数，并存在了 'weight_calculated' vector. 代码 line_64-85 的复杂结构就是为了实现这个功能所做。关于递推算法, 请参考我留下的'important_image_2.jpg',通过推倒前几轮感染出现时，不同的q^1 or q^2 or q^3 所乘的指数，就可以轻松的找出递推的规律，在这里我就不赘述了。非常有兴趣但推不出来的朋友可以联系我，有空可以当面推，比较好懂。
+
+
+
+
+
+Orientation in Chinese:  
 模型假设：  
 [1].根据‘柳叶刀’论文，假设平均每个感染者周期为8天,其中3天(T_delay)产病毒不传染 + 5天(T_infect)传染。感染者感染后8天住院丧失感染性。  
 [2].零号感染者假定为1人。传播按每人每天接触50人，20% 近距离说话，15%传染给近距离讲话的人。通过以上数据，可以计算感染因子q。
